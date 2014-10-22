@@ -1,0 +1,61 @@
+<div class="scrollable">  
+  <div class="scrollable-content">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading" toggle target="collapseOne">
+          <h4 class="panel-title">
+              Happening Today
+          </h4>
+        </div>
+        <div id="collapseOne" toggleable active-class="in" exclusion-group="accordion1" default="active" class="panel-collapse collapse">
+          <div class="panel-body">
+            <a href="{{'#overlay'+i.uid}}" toggle = "on" ng-repeat="i in todayEvents | orderBy:'i.start'" href="#" class="list-group-front">
+            <p ng-show="loading">...LOADING...</p>
+            <p ng-hide="loading">{{i.start | date : 'HH:mm'}}: {{ i.summary }}</p>
+            <div overlay="{{'overlay'+i.uid}}" default="inactive">
+        <h4 class="overlay-title">{{i.summary}}</h4>    
+        <p>
+          {{i.description}}
+        </p>
+        <p toggle="off" bubble target="{{'overlay'+i.uid}}"}>
+          <span class="btn btn-primary" ng-click='addCal(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>Select</span>
+          <span class="btn btn-default" ng-click='clickme(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>Add to Calendar</span>
+        </p>  
+      </div>
+      </a>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" toggle target="collapseTwo">
+          <h4 class="panel-title">
+              Happening in 7 Days
+          </h4>
+        </div>
+        <div id="collapseTwo" toggleable active-class="in" exclusion-group="accordion1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <a href="{{'#overlay'+i.uid}}" toggle = "on" ng-repeat="i in weekEvents | orderBy:'i.start'" href="#" class="list-group-front">{{i.start | date : 'MMM dd'}}: {{ i.summary }}
+            <div overlay="{{'overlay'+i.uid}}" default="inactive">
+        <h4 class="overlay-title">{{i.summary}}</h4>    
+        <p>
+          {{i.description}}
+        </p>
+        <p toggle="off" bubble target="{{'overlay'+i.uid}}"}>
+          <span class="btn btn-primary" ng-click='addCal(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>Select</span>
+          <span class="btn btn-default" ng-click='clickme(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>Add to Calendar</span>
+        </p>  
+      </div>
+      </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+           <div class="panel-body">
+            <span class="btn btn-primary" ng-click='serveAll()' style="width:100%;">Add All Events to Calendar</span>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

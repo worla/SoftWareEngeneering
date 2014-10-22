@@ -1,0 +1,24 @@
+<input type="search" class="form-control app-search" placeholder="Search.." ng-model="searchText"/>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="list-group">
+      <a href="{{'#overlay'+i.uid}}" toggle = "on" ng-repeat="i in ical | filter:searchText track by $index" href="#" class="list-group-item">
+       {{i.start | date : 'MMM dd'}}: {{ i.summary }} <i class="fa fa-chevron-right pull-right"></i>
+         <div overlay="{{'overlay'+i.uid}}" default="inactive">
+			  <h4 class="overlay-title">{{i.summary}}</h4>    
+			  <p>
+			    {{i.description}}
+			  </p>
+			  <p toggle="off" bubble target="{{'overlay'+i.uid}}"}>
+			    <span class="btn btn-primary" ng-click='addCal(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>{{select}}</span>
+			    <span class="btn btn-default" ng-click='clickme(i.uid,i.start,i.end,i.summary,i.description,i.location,i.url)'>Add to Calender</span>
+			  </p>  
+			</div>
+
+      </a>
+    </div>
+
+
+  </div>
+</div>
